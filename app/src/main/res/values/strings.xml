@@ -8,6 +8,7 @@
     <string name="details_recipe_preparation_time">Preparation time</string>
     <string name="details_recipe_preparation">Preparation</string>
     <string name="details_recipe_ingredients">Ingredients</string>
+
     <string name="details_save">Save recipe</string>
     <string name="details_delete">Delete recipe</string>
     <string name="details_back">Back</string>

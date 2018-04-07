@@ -8,4 +8,8 @@
     <string name="details_recipe_preparation_time">Elkészítési idő</string>
     <string name="details_recipe_preparation">Elkészítés</string>
     <string name="details_recipe_ingredients">Összetevők</string>
+
+    <string name="details_save">Recept mentése</string>
+    <string name="details_delete">Recept törlése</string>
+    <string name="details_back">Vissza</string>
 </resources>
