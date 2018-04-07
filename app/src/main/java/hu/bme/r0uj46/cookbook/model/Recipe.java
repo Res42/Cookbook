@@ -6,6 +6,7 @@ public class Recipe {
     private String preparationTime;
     private String ingredients;
     private String howToMake;
+    private String pictureUri;
 
     public int getId() {
         return id;
@@ -45,5 +46,13 @@ public class Recipe {
 
     public void setHowToMake(String howToMake) {
         this.howToMake = howToMake;
+    }
+
+    public String getPictureUri() {
+        return pictureUri;
+    }
+
+    public void setPictureUri(String pictureUri) {
+        this.pictureUri = pictureUri;
     }
 }

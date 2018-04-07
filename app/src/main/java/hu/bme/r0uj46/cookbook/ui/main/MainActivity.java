@@ -40,12 +40,12 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CookbookApplication.injector.inject(this);
+
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
 
-        CookbookApplication.injector.inject(this);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.main_add_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,6 +85,11 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     protected void onStart() {
         super.onStart();
         mainPresenter.attach(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         mainPresenter.refreshRecipes();
     }
 

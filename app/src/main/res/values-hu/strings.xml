@@ -2,6 +2,10 @@
     <string name="app_name">Recepteskönyv</string>
     <string name="title_activity_main">Receptek</string>
     <string name="no_recipes">Adj hozzá egy új receptet!</string>
-    <string name="recipe_name">Név</string>
-    <string name="recipe_preparation_time">Elkészítési idő</string>
+    <string name="recipe_preparation_time">Elkészítési idő:</string>
+
+    <string name="details_recipe_name">Név</string>
+    <string name="details_recipe_preparation_time">Elkészítési idő</string>
+    <string name="details_recipe_preparation">Elkészítés</string>
+    <string name="details_recipe_ingredients">Összetevők</string>
 </resources>
