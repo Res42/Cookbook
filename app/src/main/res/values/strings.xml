@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cookbook</string>
+    <string name="title_activity_main">Recipes</string>
+    <string name="no_recipes">Add a new recipe!</string>
+    <string name="recipe_name">Name</string>
+    <string name="recipe_preparation_time">Preparation time</string>
 </resources>

@@ -1,0 +1,49 @@
+package hu.bme.r0uj46.cookbook.model;
+
+public class Recipe {
+    private int id;
+    private String name;
+    private String preparationTime;
+    private String ingredients;
+    private String howToMake;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(String preparationTime) {
+        this.preparationTime = preparationTime;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getHowToMake() {
+        return howToMake;
+    }
+
+    public void setHowToMake(String howToMake) {
+        this.howToMake = howToMake;
+    }
+}
