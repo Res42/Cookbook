@@ -11,10 +11,8 @@ public class CookbookApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        injector =
-                DaggerCookbookApplicationComponent.builder().
-                        uIModule(
-                                new UIModule(this)
-                        ).build();
+        injector = DaggerCookbookApplicationComponent.builder()
+                .uIModule(new UIModule(this))
+                .build();
     }
 }

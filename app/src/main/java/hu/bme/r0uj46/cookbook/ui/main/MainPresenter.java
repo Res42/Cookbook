@@ -1,14 +1,20 @@
 package hu.bme.r0uj46.cookbook.ui.main;
 
-import java.util.ArrayList;
+import javax.inject.Inject;
 
+import hu.bme.r0uj46.cookbook.CookbookApplication;
+import hu.bme.r0uj46.cookbook.interactor.recipes.RecipesInteractor;
 import hu.bme.r0uj46.cookbook.model.Recipe;
 import hu.bme.r0uj46.cookbook.ui.Presenter;
 
 public class MainPresenter extends Presenter<MainScreen> {
+    @Inject
+    RecipesInteractor recipesInteractor;
+
     @Override
     public void attach(MainScreen screen) {
         super.attach(screen);
+        CookbookApplication.injector.inject(this);
     }
 
     @Override
@@ -17,16 +23,7 @@ public class MainPresenter extends Presenter<MainScreen> {
     }
 
     public void refreshRecipes() {
-        ArrayList<Recipe> recipes = new ArrayList<>();
-        for (int i = 1; i < 30; i++) {
-            Recipe recipe = new Recipe();
-            recipe.setId(i);
-            recipe.setName("Kutya " + i);
-            recipe.setPreparationTime("3 óra");
-            recipes.add(recipe);
-        }
-
-        screen.listRecipes(recipes);
+        screen.listRecipes(recipesInteractor.getRecipes());
     }
 
     public void recipeDetails(Recipe recipe) {

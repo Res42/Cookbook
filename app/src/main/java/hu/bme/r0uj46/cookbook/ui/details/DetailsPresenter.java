@@ -1,12 +1,20 @@
 package hu.bme.r0uj46.cookbook.ui.details;
 
+import javax.inject.Inject;
+
+import hu.bme.r0uj46.cookbook.CookbookApplication;
+import hu.bme.r0uj46.cookbook.interactor.recipes.RecipesInteractor;
 import hu.bme.r0uj46.cookbook.model.Recipe;
 import hu.bme.r0uj46.cookbook.ui.Presenter;
 
 public class DetailsPresenter extends Presenter<DetailsScreen> {
+    @Inject
+    RecipesInteractor recipesInteractor;
+
     @Override
     public void attach(DetailsScreen screen) {
         super.attach(screen);
+        CookbookApplication.injector.inject(this);
     }
 
     @Override
@@ -16,14 +24,7 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
 
     public void loadRecipe(int recipeId) {
         // TODO
-        Recipe recipe = new Recipe();
-        recipe.setId(recipeId);
-        recipe.setName("Kutya");
-        recipe.setPreparationTime("3 óra");
-        recipe.setHowToMake("Ügyesen");
-        recipe.setIngredients("1 kutya\n1 ügyesség");
-
-        screen.displayRecipe(recipe);
+        screen.displayRecipe(recipesInteractor.getRecipe(recipeId));
     }
 
     public void loadNewRecipe() {
