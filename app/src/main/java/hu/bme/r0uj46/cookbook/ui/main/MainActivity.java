@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         }
     }
     @Override
-    public void showRecipeDetails(int recipeId) {
+    public void showRecipeDetails(Long recipeId) {
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
         intent.putExtra(KEY_RECIPE, recipeId);
         startActivity(intent);

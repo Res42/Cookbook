@@ -1,18 +1,18 @@
 package hu.bme.r0uj46.cookbook.model;
 
 public class Recipe {
-    private int id;
+    private Long id;
     private String name;
     private String preparationTime;
     private String ingredients;
     private String howToMake;
     private String pictureUri;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
