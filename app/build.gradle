@@ -33,6 +33,19 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
 
+    // Network
+    implementation "com.squareup.okhttp3:okhttp:3.7.0"
+    implementation "com.squareup.retrofit2:retrofit:2.0.0-beta3"
+    implementation "com.squareup.retrofit2:converter-gson:2.0.0-beta3"
+    implementation "com.google.code.gson:gson:2.8.0"
+    implementation "io.swagger:swagger-annotations:1.5.0"
+
+    // ORM
+    implementation 'com.github.satyan:sugar:1.4'
+
+    // Utils
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
     // Test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

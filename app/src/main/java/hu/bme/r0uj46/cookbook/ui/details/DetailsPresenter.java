@@ -22,7 +22,7 @@ public class DetailsPresenter extends Presenter<DetailsScreen> {
         super.detach();
     }
 
-    public void loadRecipe(int recipeId) {
+    public void loadRecipe(Long recipeId) {
         // TODO
         screen.displayRecipe(recipesInteractor.getRecipe(recipeId));
     }
