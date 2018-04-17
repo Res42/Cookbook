@@ -32,12 +32,12 @@ public class RecipesSugarOrmRepository implements RecipeRepository {
     }
 
     @Override
-    public void updateRecipes(List<Recipe> recipes) {
-        List<Recipe> myRecipes = getRecipes();
-        List<Recipe> toUpdate = new ArrayList<>(myRecipes.size());
-        for (Recipe myRecipe : myRecipes) {
-            for (Recipe recipe : recipes) {
-                if (myRecipe.getId().equals(recipe.getId())) {
+    public void updateRecipes(List<Recipe> updatedRecipes) {
+        List<Recipe> currentRecipes = getRecipes();
+        List<Recipe> toUpdate = new ArrayList<>(currentRecipes.size());
+        for (Recipe currentRecipe : currentRecipes) {
+            for (Recipe recipe : updatedRecipes) {
+                if (currentRecipe.getId().equals(recipe.getId())) {
                     toUpdate.add(recipe);
                 }
             }

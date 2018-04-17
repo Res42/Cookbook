@@ -12,4 +12,7 @@
     <string name="details_save">Recept mentése</string>
     <string name="details_delete">Recept törlése</string>
     <string name="details_back">Vissza</string>
+
+    <string name="snackbar_ok">OK</string>
+    <string name="snackbar_error">Hiba</string>
 </resources>
