@@ -14,7 +14,7 @@ public class InteractorModule {
     public RecipesInteractor provideRecipesInteractor() {
         return new RecipesInteractor();
     }
-  
+
     @Provides
     @Singleton
     public EventBus provideEventBus() {

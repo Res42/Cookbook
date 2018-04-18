@@ -140,7 +140,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
 
     private void loadRecipe() {
         if (getIntent().hasExtra(MainActivity.KEY_RECIPE)) {
-            int recipeId = getIntent().getIntExtra(MainActivity.KEY_RECIPE, -1);
+            Long recipeId = getIntent().getLongExtra(MainActivity.KEY_RECIPE, -1L);
             detailsPresenter.loadRecipe(recipeId);
         } else {
             detailsPresenter.loadNewRecipe();

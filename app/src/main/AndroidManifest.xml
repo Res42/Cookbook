@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
 
-
         <activity
             android:name=".ui.details.DetailsActivity"
             android:windowSoftInputMode="stateHidden|adjustResize"
