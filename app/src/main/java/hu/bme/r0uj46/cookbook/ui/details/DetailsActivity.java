@@ -1,7 +1,6 @@
 package hu.bme.r0uj46.cookbook.ui.details;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +18,7 @@ import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.model.Recipe;
 import hu.bme.r0uj46.cookbook.ui.main.MainActivity;
+import hu.bme.r0uj46.cookbook.utils.AndroidBug5497Workaround;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsScreen {
     @Inject
@@ -39,6 +39,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        AndroidBug5497Workaround.assistActivity(this);
 
         CookbookApplication.injector.inject(this);
 
@@ -138,8 +140,8 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
 
     private void loadRecipe() {
         if (getIntent().hasExtra(MainActivity.KEY_RECIPE)) {
-            Recipe recipe = getIntent().getParcelableExtra(MainActivity.KEY_RECIPE);
-            detailsPresenter.loadRecipe(recipe);
+            Long recipeId = getIntent().getLongExtra(MainActivity.KEY_RECIPE, -1L);
+            detailsPresenter.loadRecipe(recipeId);
         } else {
             detailsPresenter.loadNewRecipe();
         }

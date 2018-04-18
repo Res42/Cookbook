@@ -11,69 +11,56 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface RecipeApi {
-  
   /**
    * List all recipes
    * 
-   * @return Call<List<Recipe>>
+   * @return Call<List<RecipeDto>>
    */
-  
   @GET("recipe")
   Call<List<RecipeDto>> listRecipes();
-    
 
-  
   /**
    * Add a new recipe to the store
    * 
    * @param body Recipe object that needs to be added to the store
    * @return Call<Void>
    */
-  
   @POST("recipe")
   Call<Void> addRecipe(
     @Body RecipeDto body
   );
 
-  
   /**
    * Find recipe by ID
    * Returns a single recipe
-   * @param recipeId ID of recipe to return
+   * @param recipeId ID of recipe
    * @return Call<Recipe>
    */
-  
   @GET("recipe/{recipeId}")
   Call<RecipeDto> getRecipeById(
     @Path("recipeId") Long recipeId
   );
 
-  
   /**
-   * Updates a recipe in the store with form data
-   * 
-   * @param recipeId ID of recipe to return
+   * Updates a recipe in the store
+   *
+   * @param recipeId ID of recipe
    * @param body Recipe object that needs to be updated in the store
    * @return Call<Void>
    */
-  
   @POST("recipe/{recipeId}")
   Call<Void> updateRecipe(
     @Path("recipeId") Long recipeId, @Body RecipeDto body
   );
 
-  
   /**
    * Deletes a recipe
    * 
-   * @param recipeId Recipe id to delete
+   * @param recipeId ID of the Recipe to delete
    * @return Call<Void>
    */
-  
   @DELETE("recipe/{recipeId}")
   Call<Void> deleteRecipe(
     @Path("recipeId") Long recipeId
   );
-
-  
 }

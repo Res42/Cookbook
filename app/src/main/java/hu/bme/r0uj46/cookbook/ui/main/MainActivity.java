@@ -21,7 +21,7 @@ import javax.inject.Inject;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.model.Recipe;
-import hu.bme.r0uj46.cookbook.ui.RecyclerItemClickListener;
+import hu.bme.r0uj46.cookbook.utils.RecyclerItemClickListener;
 import hu.bme.r0uj46.cookbook.ui.details.DetailsActivity;
 
 public class MainActivity extends AppCompatActivity implements MainScreen {
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Override
     public void showRecipeDetails(Recipe recipe) {
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-        intent.putExtra(KEY_RECIPE, recipe);
+        intent.putExtra(KEY_RECIPE, recipe.getId());
         startActivity(intent);
     }
 

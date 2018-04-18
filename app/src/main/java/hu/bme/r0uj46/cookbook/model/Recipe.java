@@ -1,10 +1,8 @@
 package hu.bme.r0uj46.cookbook.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import com.orm.SugarRecord;
 
-public class Recipe implements Parcelable {
-    private Long id;
+public class Recipe extends SugarRecord {
     private String name;
     private String preparationTime;
     private String ingredients;
@@ -14,12 +12,12 @@ public class Recipe implements Parcelable {
     public Recipe() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public Recipe(String name, String preparationTime, String ingredients, String howToMake, String pictureUri) {
+        this.name = name;
+        this.preparationTime = preparationTime;
+        this.ingredients = ingredients;
+        this.howToMake = howToMake;
+        this.pictureUri = pictureUri;
     }
 
     public String getName() {
@@ -61,43 +59,4 @@ public class Recipe implements Parcelable {
     public void setPictureUri(String pictureUri) {
         this.pictureUri = pictureUri;
     }
-
-
-    //region Parcel
-    public Recipe(Parcel in) {
-        setId(in.readLong());
-        setName(in.readString());
-        setPreparationTime(in.readString());
-        setIngredients(in.readString());
-        setHowToMake(in.readString());
-        setPictureUri(in.readString());
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(getId());
-        dest.writeString(getName());
-        dest.writeString(getPreparationTime());
-        dest.writeString(getIngredients());
-        dest.writeString(getHowToMake());
-        dest.writeString(getPictureUri());
-    }
-
-    public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
-        @Override
-        public Recipe createFromParcel(Parcel in) {
-            return new Recipe(in);
-        }
-
-        @Override
-        public Recipe[] newArray(int size) {
-            return new Recipe[size];
-        }
-    };
-    //endregion
 }
