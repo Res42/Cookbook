@@ -21,6 +21,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.details.DetailsActivity" />
+        <activity
+            android:name=".ui.details.DetailsActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"
+            />
+
+        <meta-data android:name="DATABASE" android:value="cookbook.db" />
+        <meta-data android:name="VERSION" android:value="1" />
+        <meta-data android:name="QUERY_LOG" android:value="false" />
+        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="hu.bme.r0uj46.cookbook.model" />
     </application>
 </manifest>

@@ -1,9 +1,10 @@
 package hu.bme.r0uj46.cookbook.ui.details;
 
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,11 +18,13 @@ import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.model.Recipe;
 import hu.bme.r0uj46.cookbook.ui.main.MainActivity;
+import hu.bme.r0uj46.cookbook.utils.AndroidBug5497Workaround;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsScreen {
     @Inject
     DetailsPresenter detailsPresenter;
 
+    private CoordinatorLayout coordinatorLayout;
     private CollapsingToolbarLayout toolbarLayout;
     private ImageView image;
     private TextInputEditText etName;
@@ -37,7 +40,11 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        AndroidBug5497Workaround.assistActivity(this);
+
         CookbookApplication.injector.inject(this);
+
+        coordinatorLayout = findViewById(R.id.details_layout);
 
         Toolbar toolbar = findViewById(R.id.details_toolbar);
         setSupportActionBar(toolbar);
@@ -113,6 +120,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         etPrepTime.setText(recipe.getPreparationTime());
         etIngredients.setText(recipe.getIngredients());
         etPreparation.setText(recipe.getHowToMake());
+        // TODO: image
     }
 
     @Override
@@ -120,9 +128,19 @@ public class DetailsActivity extends AppCompatActivity implements DetailsScreen 
         finish();
     }
 
+    @Override
+    public void showMessage(String message) {
+        Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_ok, null).show();
+    }
+
+    @Override
+    public void showMessage(int resourceId) {
+        Snackbar.make(coordinatorLayout, resourceId, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_ok, null).show();
+    }
+
     private void loadRecipe() {
         if (getIntent().hasExtra(MainActivity.KEY_RECIPE)) {
-            int recipeId = getIntent().getIntExtra(MainActivity.KEY_RECIPE, -1);
+            Long recipeId = getIntent().getLongExtra(MainActivity.KEY_RECIPE, -1L);
             detailsPresenter.loadRecipe(recipeId);
         } else {
             detailsPresenter.loadNewRecipe();
