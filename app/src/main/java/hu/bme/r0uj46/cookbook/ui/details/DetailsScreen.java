@@ -5,4 +5,7 @@ import hu.bme.r0uj46.cookbook.model.Recipe;
 public interface DetailsScreen {
     void displayRecipe(Recipe recipe);
     void backToPreviousActivity();
+
+    void showMessage(String message);
+    void showMessage(int resourceId);
 }

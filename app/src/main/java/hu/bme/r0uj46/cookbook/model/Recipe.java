@@ -1,19 +1,23 @@
 package hu.bme.r0uj46.cookbook.model;
 
-public class Recipe {
-    private Long id;
+import com.orm.SugarRecord;
+
+public class Recipe extends SugarRecord {
     private String name;
     private String preparationTime;
     private String ingredients;
     private String howToMake;
     private String pictureUri;
 
-    public Long getId() {
-        return id;
+    public Recipe() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Recipe(String name, String preparationTime, String ingredients, String howToMake, String pictureUri) {
+        this.name = name;
+        this.preparationTime = preparationTime;
+        this.ingredients = ingredients;
+        this.howToMake = howToMake;
+        this.pictureUri = pictureUri;
     }
 
     public String getName() {

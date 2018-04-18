@@ -23,35 +23,21 @@ public class RecipesSugarOrmRepository implements RecipeRepository {
 
     @Override
     public List<Recipe> getRecipes() {
-        return SugarRecord.listAll(Recipe.class);
+        return Recipe.listAll(Recipe.class);
+    }
+
+    @Override
+    public Recipe getRecipe(Long id) {
+        return Recipe.findById(Recipe.class, id);
     }
 
     @Override
     public void saveRecipe(Recipe recipe) {
-        SugarRecord.saveInTx(recipe);
-    }
-
-    @Override
-    public void updateRecipes(List<Recipe> recipes) {
-        List<Recipe> myRecipes = getRecipes();
-        List<Recipe> toUpdate = new ArrayList<>(myRecipes.size());
-        for (Recipe myRecipe : myRecipes) {
-            for (Recipe recipe : recipes) {
-                if (myRecipe.getId().equals(recipe.getId())) {
-                    toUpdate.add(recipe);
-                }
-            }
-        }
-        SugarRecord.saveInTx(toUpdate);
+        recipe.save();
     }
 
     @Override
     public void removeRecipe(Recipe recipe) {
-        SugarRecord.deleteInTx(recipe);
-    }
-
-    @Override
-    public boolean isInDB(Recipe recipe) {
-        return SugarRecord.findById(Recipe.class, recipe.getId()) != null;
+        Recipe.delete(recipe);
     }
 }

@@ -2,7 +2,9 @@ package hu.bme.r0uj46.cookbook.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,12 +21,13 @@ import javax.inject.Inject;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.model.Recipe;
-import hu.bme.r0uj46.cookbook.ui.RecyclerItemClickListener;
+import hu.bme.r0uj46.cookbook.utils.RecyclerItemClickListener;
 import hu.bme.r0uj46.cookbook.ui.details.DetailsActivity;
 
 public class MainActivity extends AppCompatActivity implements MainScreen {
     public static final String KEY_RECIPE = "KEY_RECIPE";
 
+    private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerViewRecipes;
     private SwipeRefreshLayout swipeRefreshLayoutRecipes;
     private TextView tvNoRecipes;
@@ -41,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         setContentView(R.layout.activity_main);
 
         CookbookApplication.injector.inject(this);
+
+        coordinatorLayout = findViewById(R.id.main_layout);
 
         Toolbar toolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
@@ -118,14 +123,24 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
         }
     }
     @Override
-    public void showRecipeDetails(Long recipeId) {
+    public void showRecipeDetails(Recipe recipe) {
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
-        intent.putExtra(KEY_RECIPE, recipeId);
+        intent.putExtra(KEY_RECIPE, recipe.getId());
         startActivity(intent);
     }
 
     @Override
     public void showNewRecipe() {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class));
+    }
+
+    @Override
+    public void showMessage(String message) {
+        Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_ok, null).show();
+    }
+
+    @Override
+    public void showMessage(int resourceId) {
+        Snackbar.make(coordinatorLayout, resourceId, Snackbar.LENGTH_LONG).setAction(R.string.snackbar_ok, null).show();
     }
 }

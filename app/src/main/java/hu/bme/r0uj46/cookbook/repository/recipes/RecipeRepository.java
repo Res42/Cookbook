@@ -13,11 +13,9 @@ public interface RecipeRepository {
 
     List<Recipe> getRecipes();
 
+    Recipe getRecipe(Long id);
+
     void saveRecipe(Recipe recipe);
 
-    void updateRecipes(List<Recipe> recipes);
-
     void removeRecipe(Recipe recipe);
-
-    boolean isInDB(Recipe recipe);
 }
