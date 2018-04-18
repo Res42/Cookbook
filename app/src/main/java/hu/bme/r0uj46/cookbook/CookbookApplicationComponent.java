@@ -23,5 +23,4 @@ public interface CookbookApplicationComponent {
     void inject(DetailsPresenter detailsPresenter);
 
     void inject(RecipesInteractor recipesInteractor);
-
 }
