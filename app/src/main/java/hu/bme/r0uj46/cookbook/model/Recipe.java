@@ -2,6 +2,8 @@ package hu.bme.r0uj46.cookbook.model;
 
 import com.orm.SugarRecord;
 
+import hu.bme.r0uj46.cookbook.network.dto.RecipeDto;
+
 public class Recipe extends SugarRecord {
     private String name;
     private String preparationTime;
@@ -58,5 +60,27 @@ public class Recipe extends SugarRecord {
 
     public void setPictureUri(String pictureUri) {
         this.pictureUri = pictureUri;
+    }
+
+    public static Recipe fromDto(RecipeDto r) {
+        Recipe recipe = new Recipe();
+        recipe.setId(r.getId());
+        recipe.setIngredients(r.getIngredients());
+        recipe.setHowToMake(r.getIngredients());
+        recipe.setPreparationTime(r.getPreparationTime());
+        recipe.setName(r.getName());
+
+        return recipe;
+    }
+
+    public RecipeDto toDto() {
+        RecipeDto recipe = new RecipeDto();
+        recipe.setId(this.getId());
+        recipe.setIngredients(this.getIngredients());
+        recipe.setHowToMake(this.getIngredients());
+        recipe.setPreparationTime(this.getPreparationTime());
+        recipe.setName(this.getName());
+
+        return recipe;
     }
 }
