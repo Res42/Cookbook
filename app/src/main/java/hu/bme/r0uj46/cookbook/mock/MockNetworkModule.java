@@ -1,7 +1,5 @@
 package hu.bme.r0uj46.cookbook.mock;
 
-import java.io.IOException;
-
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -28,9 +26,9 @@ public class MockNetworkModule {
     @Singleton
     public OkHttpClient provideOkHttpClient(OkHttpClient.Builder builder) {
 
-        builder.interceptors().add(3, new Interceptor() {
+        builder.interceptors().add(new Interceptor() {
             @Override
-            public Response intercept(Chain chain) throws IOException {
+            public Response intercept(Chain chain) {
                 Request request = chain.request();
                 return MockHttpServer.call(request);
             }
