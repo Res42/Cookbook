@@ -13,11 +13,10 @@ import java.util.Map;
 import hu.bme.r0uj46.cookbook.model.Recipe;
 
 public class RecipeMemoryRepository implements RecipeRepository {
-    private static LongSparseArray<Recipe> recipes;
+    private static LongSparseArray<Recipe> recipes = new LongSparseArray<>();
 
     @Override
     public void open(Context context) {
-        recipes = new LongSparseArray<>();
     }
 
     @Override
