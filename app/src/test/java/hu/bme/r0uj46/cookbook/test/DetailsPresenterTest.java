@@ -22,7 +22,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
+@Config(constants = BuildConfig.class, sdk = 23)
 public class DetailsPresenterTest {
     private DetailsPresenter presenter;
     private DetailsScreen screen;
@@ -66,7 +66,10 @@ public class DetailsPresenterTest {
 
     @Test
     public void testDeleteRecipe() {
-        presenter.deleteRecipe(new Recipe());
+        Recipe recipe = new Recipe();
+        recipe.setId(10L);
+
+        presenter.deleteRecipe(recipe);
         verify(screen, times(1)).backToPreviousActivity();
     }
 

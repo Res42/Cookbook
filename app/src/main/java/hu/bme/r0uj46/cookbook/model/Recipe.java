@@ -69,6 +69,7 @@ public class Recipe extends SugarRecord {
         recipe.setHowToMake(r.getIngredients());
         recipe.setPreparationTime(r.getPreparationTime());
         recipe.setName(r.getName());
+        recipe.setPictureUri(r.getPicture());
 
         return recipe;
     }
@@ -80,6 +81,7 @@ public class Recipe extends SugarRecord {
         recipe.setHowToMake(this.getIngredients());
         recipe.setPreparationTime(this.getPreparationTime());
         recipe.setName(this.getName());
+        recipe.setPicture(this.getPictureUri());
 
         return recipe;
     }

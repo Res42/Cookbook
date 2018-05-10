@@ -156,7 +156,6 @@ definitions:
         example: "lorem ipsum"
       picture:
         type: "string"
-        format: "binary"
         example: "lorem ipsum"
     xml:
       name: "Recipe"

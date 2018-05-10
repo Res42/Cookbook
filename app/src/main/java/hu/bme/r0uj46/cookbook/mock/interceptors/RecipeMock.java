@@ -51,7 +51,7 @@ public class RecipeMock {
                 responseString = GsonHelper.getGson().toJson(recipes);
                 responseCode = 200;
             } else if (request.method().toLowerCase().equals("get") && recipeId != null) {
-                responseString = GsonHelper.getGson().toJson(repository.getRecipe(recipeId));
+                responseString = GsonHelper.getGson().toJson(repository.getRecipe(recipeId).toDto());
                 responseCode = 200;
             } else if (request.method().toLowerCase().equals("post")) {
                 Recipe recipe = Recipe.fromDto(GsonHelper.getGson().fromJson(bodyToString(request), RecipeDto.class));
