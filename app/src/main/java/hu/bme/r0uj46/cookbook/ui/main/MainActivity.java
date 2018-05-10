@@ -6,7 +6,6 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -21,10 +20,11 @@ import javax.inject.Inject;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.model.Recipe;
+import hu.bme.r0uj46.cookbook.ui.AnalyticsActivity;
 import hu.bme.r0uj46.cookbook.utils.RecyclerItemClickListener;
 import hu.bme.r0uj46.cookbook.ui.details.DetailsActivity;
 
-public class MainActivity extends AppCompatActivity implements MainScreen {
+public class MainActivity extends AnalyticsActivity implements MainScreen {
     public static final String KEY_RECIPE = "KEY_RECIPE";
 
     private CoordinatorLayout coordinatorLayout;
