@@ -14,7 +14,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
@@ -29,10 +28,11 @@ import javax.inject.Inject;
 import hu.bme.r0uj46.cookbook.CookbookApplication;
 import hu.bme.r0uj46.cookbook.R;
 import hu.bme.r0uj46.cookbook.model.Recipe;
+import hu.bme.r0uj46.cookbook.ui.AnalyticsActivity;
 import hu.bme.r0uj46.cookbook.ui.main.MainActivity;
 import hu.bme.r0uj46.cookbook.utils.AndroidBug5497Workaround;
 
-public class DetailsActivity extends AppCompatActivity implements DetailsScreen {
+public class DetailsActivity extends AnalyticsActivity implements DetailsScreen {
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
 
     @Inject
