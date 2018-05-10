@@ -14,13 +14,20 @@ import hu.bme.r0uj46.cookbook.interactor.recipes.events.GetRecipesEvent;
 import hu.bme.r0uj46.cookbook.interactor.recipes.events.RemoveRecipeEvent;
 import hu.bme.r0uj46.cookbook.interactor.recipes.events.SaveRecipeEvent;
 import hu.bme.r0uj46.cookbook.model.Recipe;
+import hu.bme.r0uj46.cookbook.network.api.RecipeApi;
+import hu.bme.r0uj46.cookbook.network.dto.RecipeDto;
 import hu.bme.r0uj46.cookbook.repository.recipes.RecipeRepository;
+import retrofit2.Call;
+import retrofit2.Response;
 
 import static hu.bme.r0uj46.cookbook.CookbookApplication.injector;
 
 public class RecipesInteractor {
     @Inject
     EventBus bus;
+
+    @Inject
+    RecipeApi recipeApi;
 
     @Inject
     RecipeRepository repository;
@@ -33,7 +40,18 @@ public class RecipesInteractor {
         GetRecipesEvent event = new GetRecipesEvent();
 
         try {
-            event.setRecipes(repository.getRecipes());
+            Response<List<RecipeDto>> response = recipeApi.listRecipes().execute();
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+
+            List<Recipe> recipes = new ArrayList<>();
+            for (RecipeDto r : response.body()) {
+                recipes.add(Recipe.fromDto(r));
+            }
+            event.setRecipes(recipes);
+            //event.setRecipes(repository.getRecipes());
         } catch (Exception e) {
             event.setThrowable(e);
         } finally {
@@ -45,7 +63,13 @@ public class RecipesInteractor {
         GetRecipeEvent event = new GetRecipeEvent();
 
         try {
-            event.setRecipe(repository.getRecipe(id));
+            Response<RecipeDto> response = recipeApi.getRecipeById(id).execute();
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+            event.setRecipe(Recipe.fromDto(response.body()));
+            //event.setRecipe(repository.getRecipe(id));
         } catch (Exception e) {
             event.setThrowable(e);
         } finally {
@@ -55,10 +79,16 @@ public class RecipesInteractor {
 
     public void saveRecipe(final Recipe recipe) {
         SaveRecipeEvent event = new SaveRecipeEvent();
-        event.setRecipe(recipe);
 
         try {
-            repository.saveRecipe(recipe);
+            Response<Void> response = recipeApi.addRecipe(recipe.toDto()).execute();
+
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+            event.setRecipe(recipe);
+            //repository.saveRecipe(recipe);
         } catch (Exception e) {
             event.setThrowable(e);
         } finally {
@@ -71,7 +101,13 @@ public class RecipesInteractor {
         event.setRecipe(recipe);
 
         try {
-            repository.removeRecipe(recipe);
+            Response<Void> response = recipeApi.deleteRecipe(recipe.getId()).execute();
+            if (response.code() != 200) {
+                throw new Exception("Result code is not 200");
+            }
+            event.setCode(response.code());
+            event.setRecipe(recipe);
+            //repository.removeRecipe(recipe);
         } catch (Exception e) {
             event.setThrowable(e);
         } finally {
