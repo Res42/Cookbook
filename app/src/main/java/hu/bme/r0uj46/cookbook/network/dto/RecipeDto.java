@@ -26,7 +26,7 @@ public class RecipeDto   {
   private String howToMake = null;
   
   @SerializedName("picture")
-  private byte[] picture = null;
+  private String picture = null;
   
 
   
@@ -88,10 +88,10 @@ public class RecipeDto   {
   /**
    **/
   @ApiModelProperty(value = "")
-  public byte[] getPicture() {
+  public String getPicture() {
     return picture;
   }
-  public void setPicture(byte[] picture) {
+  public void setPicture(String picture) {
     this.picture = picture;
   }
 
@@ -111,7 +111,7 @@ public class RecipeDto   {
         Objects.equals(preparationTime, recipe.preparationTime) &&
         Objects.equals(ingredients, recipe.ingredients) &&
         Objects.equals(howToMake, recipe.howToMake) &&
-        Arrays.equals(picture, recipe.picture);
+        Objects.equals(picture, recipe.picture);
   }
 
   @Override

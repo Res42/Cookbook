@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
 import java.util.List;
 
 import hu.bme.r0uj46.cookbook.R;
@@ -33,11 +36,12 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Recipe recipe = recipesList.get(position);
-//        if (recipe.getImages().size() > 0) {
-//            Glide.with(context).load(artist.getImages().get(0).getUrl()).into(holder.ivImage);
-//        }
+
         holder.tvName.setText(recipe.getName());
         holder.tvPreparationTime.setText(recipe.getPreparationTime());
+        if (recipe.getPictureUri() != null) {
+            Glide.with(context).load(recipe.getPictureUri()).into(holder.ivImage);
+        }
     }
 
     @Override
