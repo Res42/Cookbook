@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -82,6 +83,14 @@ public class MainActivity extends AnalyticsActivity implements MainScreen {
             @Override
             public void onRefresh() {
                 mainPresenter.refreshRecipes();
+            }
+        });
+
+        Button crashButton = findViewById(R.id.btnCrash);
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                throw new RuntimeException("Crash it!");
             }
         });
     }
