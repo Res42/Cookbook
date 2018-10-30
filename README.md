@@ -1,2 +1,2 @@
 # Cookbook
-A cookbook app on Android. Homework for VIAUMB02.
+A cookbook app on Android. Homework for "Mobilszoftver laboratórium" (VIAUMB02).
